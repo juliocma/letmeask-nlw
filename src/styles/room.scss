@@ -41,6 +41,7 @@
         font-size: 14px;
       }
     }
+
     form {
       textarea {
         width: 100%;
@@ -97,6 +98,10 @@
           }
         }
       }
+    }
+
+    .question-list {
+      margin: 24px 0;
     }
   }
 }
