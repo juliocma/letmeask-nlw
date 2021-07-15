@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { database } from '../services/firebase';
 import { useAuth } from './useAuths';
 
@@ -35,6 +36,8 @@ type QuestionType = {
 
 export function useRoom(roomID: string) {
   const { user } = useAuth();
+  const history = useHistory();
+
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [title, setTitle] = useState('');
 
@@ -43,7 +46,11 @@ export function useRoom(roomID: string) {
 
     roomRef.on('value', (room) => {
       const databaseRoom = room.val();
-
+      if (databaseRoom.closedAt) {
+        alert('Room already closed');
+        history.push('/');
+        return;
+      }
       const firebaseQuestions: FirebaseQuestions =
         databaseRoom?.questions ?? {};
       const parsedQuestions = Object.entries(firebaseQuestions).map(
@@ -61,6 +68,7 @@ export function useRoom(roomID: string) {
           };
         }
       );
+
       setTitle(databaseRoom?.title);
       setQuestions(parsedQuestions);
     });
