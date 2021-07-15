@@ -15,6 +15,12 @@
   img {
     margin-right: 8px;
   }
+  &.outlined {
+    background: #fff;
+    border: 1px solid #835afd;
+    color: #835afd;
+  }
+
   &:not(:disabled):hover {
     filter: brightness(0.9);
   }
@@ -26,4 +32,9 @@
 .secondary {
   background: #ea4335;
   color: #fff;
+  &.outlined {
+    background: #fff;
+    border: 1px solid #ea4335;
+    color: #ea4335;
+  }
 }
