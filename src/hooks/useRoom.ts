@@ -46,7 +46,7 @@ export function useRoom(roomID: string) {
 
     roomRef.on('value', (room) => {
       const databaseRoom = room.val();
-      if (databaseRoom.closedAt) {
+      if (databaseRoom?.closedAt) {
         alert('Room already closed');
         history.push('/');
         return;
